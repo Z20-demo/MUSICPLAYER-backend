@@ -11,4 +11,12 @@ public enum Role {
         }
         return null;
     }
+    public static String getRole(Role role){
+        if(role.equals(USER)){
+            return "USER";
+        }else if(role.equals(ADMIN)){
+            return "ADMIN";
+        }
+        return null;
+    }
 }

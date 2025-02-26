@@ -12,4 +12,6 @@ public  interface UserService {
     Boolean updateInformation(UserVO userVO);
 
     String getUsername (Integer userId);
+
+    String verify();
 }
