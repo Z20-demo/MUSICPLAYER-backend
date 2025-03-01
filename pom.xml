@@ -9,11 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modules>
-        <module>gateway</module>
         <module>eurekaServer</module>
         <module>user</module>
         <module>song</module>
-
     </modules>
     <packaging>pom</packaging>
     <groupId>com.nju</groupId>

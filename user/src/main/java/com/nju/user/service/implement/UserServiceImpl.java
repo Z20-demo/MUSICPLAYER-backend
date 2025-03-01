@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import com.nju.user.model.UserVO;
 
 import java.util.Date;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @Service
@@ -30,15 +32,26 @@ public class UserServiceImpl implements UserService{
     @Autowired
     SecurityUtil securityUtil;
 
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     @Override
     public Boolean register(UserVO userVO) {
+        // 记录日志：开始注册流程
+        logger.info("开始注册流程，用户手机号: {}", userVO.getPhone());
+        // 检查手机号是否已注册
         User user = userRepository.findByPhone(userVO.getPhone());
         if (user != null) {
+            // 记录日志：手机号已注册
+            logger.warn("手机号已注册，用户手机号: {}", userVO.getPhone());
             return false;
         }
+        // 将VO对象转换为PO对象
         user = userVO.toPO();
+
         user.setCreateTime(new Date());
+        // 保存用户信息
         userRepository.save(user);
+        // 记录日志：注册成功
+        logger.info("注册成功，用户手机号: {}", user.getPhone());
         return true;
     }
     @Override
